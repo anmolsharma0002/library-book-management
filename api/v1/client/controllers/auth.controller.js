@@ -1,23 +1,25 @@
-const AuthService = require("../../../../services/auth.service")
+const AuthService = require("../../../../services/auth.service"); // Importing the AuthService
 
-class AuthController{
-    async register(req, res, next){
+class AuthController {
+    // Register a new user
+    async register(req, res, next) {
         try {
-            await AuthService.register(req.body)
-            res.status(200).json({ success: true, message: 'Account Created Successfully'});
+            await AuthService.register(req.body); // Call AuthService to register the user
+            res.status(200).json({ success: true, message: 'Account Created Successfully' });
         } catch (error) {
-            next(error)
+            next(error); // Pass error to the error handling middleware
         }
     }
 
-    async login(req, res, next){
+    // Log in an existing user
+    async login(req, res, next) {
         try {
-            const token = await AuthService.login(req.body);
+            const token = await AuthService.login(req.body); // Call AuthService to log in the user
             res.status(200).json({ success: true, token: token });
         } catch (error) {
-            next(error)
+            next(error); // Pass error to the error handling middleware
         }
     }
 }
 
-module.exports = AuthController;
+module.exports = AuthController; // Exporting the AuthController class

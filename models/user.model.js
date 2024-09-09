@@ -31,7 +31,7 @@ const UserSchema = new Schema({
     role: {
         type: String,
         enum: ['librarian', 'staff', 'student'], // Role must be one of these values
-        default: 'student', // Default role is 'student'
+        default: 'student', // Default is 'student'
         lowercase: true // Convert role to lowercase
     }
 }, {
