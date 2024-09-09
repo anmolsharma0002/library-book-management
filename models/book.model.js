@@ -1,37 +1,42 @@
-const mongoose = require('mongoose');
-const { Schema } = mongoose;
-const timestamps = require('mongoose-timestamp');
-const uniqueValidator = require('mongoose-unique-validator');
+const mongoose = require('mongoose'); // Import mongoose for schema definition and model creation
+const { Schema } = mongoose; // Destructuring Schema from mongoose
+const timestamps = require('mongoose-timestamp'); // Plugin for adding createdAt and updatedAt timestamps
+const uniqueValidator = require('mongoose-unique-validator'); // Plugin for ensuring unique fields
 
+// Define the Book schema
 const BookSchema = new Schema({
-
-    isbn: { 
-        type: String, 
-        trim: true, 
-        required: true 
+    isbn: {
+        type: String,
+        trim: true, // Removes whitespace
+        required: true // This field is required
     },
-    title: { 
-        type: String, 
-        trim: true, 
+    title: {
+        type: String,
+        trim: true // Removes whitespace
     },
     author: {
-        type: String,
+        type: String
     },
     publisher: {
-        type: String,
+        type: String
     },
-    status:{
+    status: {
         type: String,
-        enum: ['available', 'issued', 'lost', 'damaged'],
-        default: 'available'
-    },
+        enum: ['available', 'issued', 'lost', 'damaged'], // statuses for the book
+        default: 'available', // Default is 'available'
+        lowercase: true // Convert role to lowercase
+    }
 }, {
-    strict: true,
+    strict: true, // Ensures that only fields defined in the schema are saved in the database
+    
 }, {
-    timestamps: true
-})
+    timestamps: true // Automatically adds createdAt and updatedAt fields
+});
 
-BookSchema.plugin(timestamps);
-BookSchema.plugin(uniqueValidator);
+// Apply plugins to schema
+BookSchema.plugin(timestamps); // Adds timestamps for created and updated fields
+BookSchema.plugin(uniqueValidator); // Ensures unique fields for the schema
+
+// Export the Book model and schema
 module.exports = mongoose.model('Book', BookSchema);
 module.exports.Schema = BookSchema;
