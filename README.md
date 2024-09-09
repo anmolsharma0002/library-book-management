@@ -40,7 +40,7 @@ npm run dev
 
 # Technology
 1. MongoDB
-2. Node.js
+2. ExpressJs
 3. Third Part API https://openlibrary.org
 
 # API Documentation
