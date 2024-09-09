@@ -1,0 +1,6 @@
+# Add files or directory to ignore from commit
+/node_modules
+
+
+# Environment
+.env*
