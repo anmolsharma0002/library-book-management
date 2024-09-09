@@ -1,0 +1,364 @@
+{
+	"info": {
+		"_postman_id": "904369a0-1955-4361-870c-4fdaf71501cb",
+		"name": "Library Management Application API's",
+		"description": "StartFragmentLibrary Book Management: This project requires the implementation of three distinct roles: Librarian, Staff, and Student.EndFragment\n\nSuccess Response will look like\n\n`{success: true,data: {}}`\n\nError Response Will look like Below\n\n`{ success: false, message: '' }`\n\n`Github Repo: https://github.com/anmolsharma0002/library-book-management.git`",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "27783005",
+		"_collection_link": "https://www.postman.com/anmolbackend/workspace/library-management/collection/27783005-904369a0-1955-4361-870c-4fdaf71501cb?action=share&source=collection_link&creator=27783005"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "lms_librarian_1@yopmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Atul Garg",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "librarian",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": "http://localhost:4000/api/v1/client/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "lms_librarian_3@yopmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Ankit Garg",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "librarian",
+									"description": "Enter role either librarian or staff or student",
+									"type": "text"
+								}
+							]
+						},
+						"url": "http://localhost:4000/api/v1/client/auth/register"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Librarian",
+					"item": [
+						{
+							"name": "Add Book By ISBN Via Third Party Open Library",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJjbGllbnQiLCJyb2xlIjoibGlicmFyaWFuIiwidXNlciI6IjY2ZGVkN2U3MGRjMTdkOGYwNzUzOWYzYSIsImlhdCI6MTcyNTg4MDY0NSwiZXhwIjoxNzI2NDg1NDQ1LCJhdWQiOiI2NmRlZDdlNzBkYzE3ZDhmMDc1MzlmM2EiLCJpc3MiOiJsaWJyYXJ5LmFubW9sc2hhcm1hMDAwMi5naXRodWIuaW8ifQ.RtB8_WZ2hQoL6hop_VJ1R-wTkBQhg8mpZlY-kphHOBQ"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "isbn",
+											"value": "1002",
+											"type": "text"
+										}
+									]
+								},
+								"url": "http://localhost:4000/api/v1/client/book/1002"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Library Books ( Only Librarian Can Access )",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJjbGllbnQiLCJyb2xlIjoibGlicmFyaWFuIiwidXNlciI6IjY2ZGVkN2U3MGRjMTdkOGYwNzUzOWYzYSIsImlhdCI6MTcyNTg4MDY0NSwiZXhwIjoxNzI2NDg1NDQ1LCJhdWQiOiI2NmRlZDdlNzBkYzE3ZDhmMDc1MzlmM2EiLCJpc3MiOiJsaWJyYXJ5LmFubW9sc2hhcm1hMDAwMi5naXRodWIuaW8ifQ.RtB8_WZ2hQoL6hop_VJ1R-wTkBQhg8mpZlY-kphHOBQ"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": "http://localhost:4000/api/v1/client/book"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Book ( Only Librarian Can Access ))",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJjbGllbnQiLCJyb2xlIjoibGlicmFyaWFuIiwidXNlciI6IjY2ZGVkN2U3MGRjMTdkOGYwNzUzOWYzYSIsImlhdCI6MTcyNTg4MDY0NSwiZXhwIjoxNzI2NDg1NDQ1LCJhdWQiOiI2NmRlZDdlNzBkYzE3ZDhmMDc1MzlmM2EiLCJpc3MiOiJsaWJyYXJ5LmFubW9sc2hhcm1hMDAwMi5naXRodWIuaW8ifQ.RtB8_WZ2hQoL6hop_VJ1R-wTkBQhg8mpZlY-kphHOBQ"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "isbn",
+											"value": "1002",
+											"type": "text"
+										}
+									]
+								},
+								"url": "http://localhost:4000/api/v1/client/book/66df094178a74f20659d956b"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Registered Users ( Only Librarian Can Access )",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJjbGllbnQiLCJyb2xlIjoibGlicmFyaWFuIiwidXNlciI6IjY2ZGVkN2U3MGRjMTdkOGYwNzUzOWYzYSIsImlhdCI6MTcyNTg4MDY0NSwiZXhwIjoxNzI2NDg1NDQ1LCJhdWQiOiI2NmRlZDdlNzBkYzE3ZDhmMDc1MzlmM2EiLCJpc3MiOiJsaWJyYXJ5LmFubW9sc2hhcm1hMDAwMi5naXRodWIuaW8ifQ.RtB8_WZ2hQoL6hop_VJ1R-wTkBQhg8mpZlY-kphHOBQ"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": "http://localhost:4000/api/v1/client/user"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Registered Users By Role ( Only Librarian Can Access )",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJjbGllbnQiLCJyb2xlIjoibGlicmFyaWFuIiwidXNlciI6IjY2ZGVkN2U3MGRjMTdkOGYwNzUzOWYzYSIsImlhdCI6MTcyNTg4MDY0NSwiZXhwIjoxNzI2NDg1NDQ1LCJhdWQiOiI2NmRlZDdlNzBkYzE3ZDhmMDc1MzlmM2EiLCJpc3MiOiJsaWJyYXJ5LmFubW9sc2hhcm1hMDAwMi5naXRodWIuaW8ifQ.RtB8_WZ2hQoL6hop_VJ1R-wTkBQhg8mpZlY-kphHOBQ"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/v1/client/user?role=staff",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"v1",
+										"client",
+										"user"
+									],
+									"query": [
+										{
+											"key": "role",
+											"value": "staff"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update User By User Id ( Only Librarian Can Access )",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJjbGllbnQiLCJyb2xlIjoibGlicmFyaWFuIiwidXNlciI6IjY2ZGVkN2U3MGRjMTdkOGYwNzUzOWYzYSIsImlhdCI6MTcyNTg4MDY0NSwiZXhwIjoxNzI2NDg1NDQ1LCJhdWQiOiI2NmRlZDdlNzBkYzE3ZDhmMDc1MzlmM2EiLCJpc3MiOiJsaWJyYXJ5LmFubW9sc2hhcm1hMDAwMi5naXRodWIuaW8ifQ.RtB8_WZ2hQoL6hop_VJ1R-wTkBQhg8mpZlY-kphHOBQ"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Any Name",
+											"type": "text"
+										}
+									]
+								},
+								"url": "http://localhost:4000/api/v1/client/user/66ded7be0dc17d8f07539f35"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User By User Id ( Only Librarian Can Access )",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJjbGllbnQiLCJyb2xlIjoibGlicmFyaWFuIiwidXNlciI6IjY2ZGVkN2U3MGRjMTdkOGYwNzUzOWYzYSIsImlhdCI6MTcyNTg4MDY0NSwiZXhwIjoxNzI2NDg1NDQ1LCJhdWQiOiI2NmRlZDdlNzBkYzE3ZDhmMDc1MzlmM2EiLCJpc3MiOiJsaWJyYXJ5LmFubW9sc2hhcm1hMDAwMi5naXRodWIuaW8ifQ.RtB8_WZ2hQoL6hop_VJ1R-wTkBQhg8mpZlY-kphHOBQ"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": "http://localhost:4000/api/v1/client/user/66ded7be0dc17d8f07539f35"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Staff",
+					"item": [
+						{
+							"name": "View Books Issued to LoggedIn Staff",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJjbGllbnQiLCJyb2xlIjoibGlicmFyaWFuIiwidXNlciI6IjY2ZGVkN2U3MGRjMTdkOGYwNzUzOWYzYSIsImlhdCI6MTcyNTg4MDY0NSwiZXhwIjoxNzI2NDg1NDQ1LCJhdWQiOiI2NmRlZDdlNzBkYzE3ZDhmMDc1MzlmM2EiLCJpc3MiOiJsaWJyYXJ5LmFubW9sc2hhcm1hMDAwMi5naXRodWIuaW8ifQ.RtB8_WZ2hQoL6hop_VJ1R-wTkBQhg8mpZlY-kphHOBQ"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": "http://localhost:4000/api/v1/client/book/issued"
+							},
+							"response": []
+						},
+						{
+							"name": "Transfer Book to another Staff or Student  ( Librarian or Staff  Can Access )",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJjbGllbnQiLCJyb2xlIjoic3RhZmYiLCJpZCI6IjY2ZGVkN2FmMGRjMTdkOGYwNzUzOWYzMCIsImlhdCI6MTcyNTkwOTI2MCwiZXhwIjoxNzI2NTE0MDYwLCJhdWQiOiI2NmRlZDdhZjBkYzE3ZDhmMDc1MzlmMzAiLCJpc3MiOiJsaWJyYXJ5LmFubW9sc2hhcm1hMDAwMi5naXRodWIuaW8ifQ.-lA6D-M6jD2US3Kx75Y29-AuV2K0XlcmvbYvL8oeYMs"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "bookId",
+											"value": "66df091f78a74f20659d9568",
+											"description": "Book Mongoose Object Id",
+											"type": "text"
+										},
+										{
+											"key": "issueTo",
+											"value": "66ded7be0dc17d8f07539f35",
+											"description": "User Mongoose Object Id",
+											"type": "text"
+										}
+									]
+								},
+								"url": "http://localhost:4000/api/v1/client/book/transfer"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Student",
+					"item": [
+						{
+							"name": "View Books Issued to LoggedIn  User",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJjbGllbnQiLCJyb2xlIjoibGlicmFyaWFuIiwidXNlciI6IjY2ZGVkN2U3MGRjMTdkOGYwNzUzOWYzYSIsImlhdCI6MTcyNTg4MDY0NSwiZXhwIjoxNzI2NDg1NDQ1LCJhdWQiOiI2NmRlZDdlNzBkYzE3ZDhmMDc1MzlmM2EiLCJpc3MiOiJsaWJyYXJ5LmFubW9sc2hhcm1hMDAwMi5naXRodWIuaW8ifQ.RtB8_WZ2hQoL6hop_VJ1R-wTkBQhg8mpZlY-kphHOBQ"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": "http://localhost:4000/api/v1/client/book/issued"
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "User Routes contains Below Specific Roles Routes"
+		}
+	]
+}
